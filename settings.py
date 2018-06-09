@@ -6,7 +6,7 @@ MONGO_PORT = 27017
 ITEM_METHODS = ['GET', 'PATCH', 'DELETE']
 
 
-schema = {
+people_schema = {
     # Schema definition, based on Cerberus grammar. Check the Cerberus project
     # (https://github.com/nicolaiarocci/cerberus) for details.
     'firstname': {
@@ -20,6 +20,12 @@ schema = {
         'maxlength': 15,
         'required': True,
         'unique': True,
+    },
+    'password': {
+        'type': 'string',
+        'minlength': 1,
+        'maxlength': 1000,
+        'required': True,
     },
     # 'role' is a list, and can only contain values from 'allowed'.
     'role': {
@@ -61,7 +67,47 @@ people = {
     # most global settings can be overridden at resource level
     'resource_methods': ['GET', 'POST'],
 
-    'schema': schema
+    'schema': people_schema
 }
 
-DOMAIN = {'people': people}
+
+property_schema = {
+    'latitube': {
+        'type': 'number',
+    },
+    'longitude': {
+        'type': 'number',
+    },
+    'sqft': {
+        'type': 'number',
+    },
+    'sqftUnfinished': {
+        'type': 'number',
+    },
+    'vacant': {
+        'type': 'boolean',
+    },
+    # An embedded 'strongly-typed' dictionary.
+    'location': {
+        'type': 'dict',
+        'schema': {
+            'address': {'type': 'string'},
+            'city': {'type': 'string'},
+            'zip': {'type': 'string'},
+        },
+    },
+}
+
+
+property = {
+    'item_title': 'property',
+    'cache_control': 'max-age=10,must-revalidate',
+    'cache_expires': 10,
+    'resource_methods': ['GET', 'POST'],
+    'schema': property_schema
+}
+
+DOMAIN = {
+    'people': people,
+    'properties': property,
+}
