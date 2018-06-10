@@ -1,7 +1,11 @@
 FROM python:2.7.15-alpine3.6
 
-ADD . /
+ADD ./requirements.txt /hackapi/requirements.txt
 
-RUN apk update && pip install -r requirements.txt
+RUN apk update \
+    && pip install -r /hackapi/requirements.txt
 
-CMD ["python", "main.py"]
+ADD . /hackapi
+
+WORKDIR /hackepi
+CMD ["python", "/hackapi/main.py"]

@@ -9,6 +9,13 @@ ITEM_METHODS = ['GET', 'PATCH', 'DELETE']
 people_schema = {
     # Schema definition, based on Cerberus grammar. Check the Cerberus project
     # (https://github.com/nicolaiarocci/cerberus) for details.
+    'username': {
+        'type': 'string',
+        'minlength': 1,
+        'maxlength': 100,
+        'required': True,
+        'unique': True,
+    },
     'firstname': {
         'type': 'string',
         'minlength': 1,
@@ -18,14 +25,17 @@ people_schema = {
         'type': 'string',
         'minlength': 1,
         'maxlength': 15,
-        'required': True,
-        'unique': True,
     },
     'password': {
         'type': 'string',
         'minlength': 1,
         'maxlength': 1000,
         'required': True,
+    },
+    'token': {
+        'type': 'string',
+        'minlength': 1,
+        'maxlength': 1000,
     },
     # 'role' is a list, and can only contain values from 'allowed'.
     'role': {
@@ -37,11 +47,9 @@ people_schema = {
         'type': 'dict',
         'schema': {
             'address': {'type': 'string'},
-            'city': {'type': 'string'}
+            'city': {'type': 'string'},
+            'zip': {'type': 'number'},
         },
-    },
-    'born': {
-        'type': 'datetime',
     },
 }
 
