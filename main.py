@@ -1,7 +1,9 @@
-from eve import Eve
 import json
 import uuid
 from eve.auth import TokenAuth
+from eve import Eve
+from eve_swagger import swagger, add_documentation
+
 from flask import current_app as app
 from flask import Blueprint, request, Response
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -63,11 +65,15 @@ def people_callback(request, payload):
     print 'A post to "people" was just performed!'
 
 
-app = Eve(auth=TokenAuth)
+# app = Eve(auth=TokenAuth)
+app = Eve()
+
 app.on_post_POST_people += people_callback
 app.on_pre_POST_people += pre_people_post_callback
 app.on_insert_people += on_insert_people
+
 app.register_blueprint(blueprint)
+app.register_blueprint(swagger)
 
 
 if __name__ == '__main__':

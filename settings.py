@@ -5,6 +5,26 @@ MONGO_PORT = 27017
 
 ITEM_METHODS = ['GET', 'PATCH', 'DELETE']
 
+X_DOMAINS = ['http://localhost:3002',  # The domain where Swagger UI is running
+             'http://editor.swagger.io',
+             'http://petstore.swagger.io']
+X_HEADERS = ['Content-Type', 'If-Match'] 
+
+SWAGGER_INFO = {
+    'title': 'Hackapi',
+    'version': '1.0',
+    'description': 'REST backend for hackathon',
+    'termsOfService': 'use at your own risk!',
+    'contact': {
+        'name': 'Erin',
+        'url': 'http://getawalkthrough.com'
+    },
+    'license': {
+        'name': 'BSD',
+        'url': 'https://github.com/pyeve/eve-swagger/blob/master/LICENSE',
+    },
+    'schemes': ['http', 'https'],
+}
 
 people_schema = {
     # Schema definition, based on Cerberus grammar. Check the Cerberus project
@@ -114,6 +134,7 @@ property = {
     'resource_methods': ['GET', 'POST'],
     'schema': property_schema
 }
+
 
 DOMAIN = {
     'people': people,
