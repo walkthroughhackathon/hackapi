@@ -20,3 +20,14 @@ make api
 u'{"_updated": "Sat, 09 Jun 2018 19:45:47 GMT", "_links": {"self": {"href": "people/5b1c2e6bfc6b160001a1b83b", "title": "person"}}, "_created": "Sat, 09 Jun 2018 19:45:47 GMT", "_status": "OK", "_id": "5b1c2e6bfc6b160001a1b83b", "_etag": "c685a37f179828938e7874b52071e98725673a87"}'
 
 ```
+
+## To use the jupyter notebooks
+
+```
+sudo pip install virtualenv
+mkdir ~/pyenvs
+virtualenv ~/pyenvs/jupyter
+source ~/pyenvs/jupyter
+pip install requests
+jupyter notebook notebooks
+```
